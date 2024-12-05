@@ -3,7 +3,7 @@ if (isset($_GET['reset']) && $_GET['reset'] == 1 && function_exists('opcache_res
     opcache_reset();
     echo "OPcache has been cleared.";
 }
-for ($i = 1; $i <= 3; $i++) {
+for ($i = 1; $i <= 5; $i++) {
     $start = microtime(true);
     echo "<h1>Day $i</h1>";
     if (file_exists("day$i.php")) {
