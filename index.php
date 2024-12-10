@@ -2,7 +2,7 @@
 ob_implicit_flush(true);
 ob_end_flush();
 
-for ($aocDay = 0; $aocDay <= 9; $aocDay++) {
+for ($aocDay = 0; $aocDay <= 10; $aocDay++) {
     $start = microtime(true);
     echo "<h1>Day $aocDay</h1>";
     flush();
