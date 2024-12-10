@@ -1,13 +1,11 @@
 <?php
-if (isset($_GET['reset']) && $_GET['reset'] == 1 && function_exists('opcache_reset')) {
-    opcache_reset();
-    echo "OPcache has been cleared.";
-}
-for ($i = 1; $i <= 5; $i++) {
+for ($aocDay = 0; $aocDay <= 9; $aocDay++) {
     $start = microtime(true);
-    echo "<h1>Day $i</h1>";
-    if (file_exists("day$i.php")) {
-        include "day$i.php";
+    echo "<h1>Day $aocDay</h1>";
+    flush();
+    if (file_exists("day$aocDay.php")) {
+        include "day$aocDay.php";
     }
     echo "<p>Time: " . round((microtime(true) - $start) * 1000, 2) . " ms";
+    flush();
 }
