@@ -39,15 +39,24 @@ $empty = $emptyCopy;
 $block = 0;
 $index = 0;
 $movedFiles = [];
+$firstEmpty = 0;
+$oneisempty = false;
 $filesReverse = array_reverse($files, true);
 foreach ($filesReverse as $key => $value) {
-    foreach ($empty as $k => $v) {
-        if ($key > $k && $value[1] <= $v) {
+    while ($oneisempty && $empty[$firstEmpty] == -1) {
+        $firstEmpty++;
+    }
+    if ($firstEmpty >= $key) {
+        break;
+    }
+    for ($k = $firstEmpty; $k <= $key; $k++) {
+        if ($key > $k && $value[1] <= $empty[$k]) {
             for ($i = 0; $i < $value[1]; $i++) {
                 $movedFiles[$k][] = $value[0];
             }
-            $remaining = $v - $value[1];
+            $remaining = $empty[$k] - $value[1];
             $empty[$k] = ($remaining > 0) ? $remaining : -1;
+            $oneisempty = true;
             $files[$key][0] = 0;
             break;
         }
