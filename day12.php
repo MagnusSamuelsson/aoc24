@@ -11,12 +11,13 @@ $directions = [
     ['x' => 0, 'y' => 1],
     ['x' => -1, 'y' => 0]
 ];
+
 function findGroup($y, $x): array {
     global $visited, $directions, $map,$sides,$sidecounter;
-    if (in_array("$y,$x", $visited)) {
+    if (isset($visited["$y,$x"])) {
         return [0,0];
     }
-    $visited[] = "$y,$x";
+    $visited["$y,$x"] = true;
     $plantsInGroup = 0;
     $fences = 0;
     foreach ($directions as $direction) {
@@ -69,7 +70,7 @@ $pt1 = 0;
 $pt2 = 0;
 foreach ($map as $y => $line) {
     foreach ($line as $x => $cell) {
-        if (in_array("$y,$x", $visited)) {
+        if (isset($visited["$y,$x"])) {
             continue;
         }
         $sides = [];
@@ -80,4 +81,3 @@ foreach ($map as $y => $line) {
     }
 }
 echo "<p>The answer for part 1 is: $pt1";
-echo "<p>The answer for part 2 is: $pt2";
