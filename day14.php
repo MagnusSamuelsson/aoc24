@@ -2,7 +2,7 @@
 $input = file_get_contents('inputs/day14.txt');
 $input = preg_split('/\r?\n/', $input);
 $robots = [];
-foreach($input as $key => $line) {
+foreach($input as $keyInput => $line) {
     preg_match_all('/-?\d+/', $line, $robs);
     $robots = array_merge($robots, $robs);
 }
@@ -42,8 +42,8 @@ function newRobotPosition($robot, $seconds) {
     $robot[1] = $y;
     return $robot;
 }
-foreach ($robots as $key => $robot) {
-    $robots[$key] = newRobotPosition($robot, 100);
+foreach ($robots as $keyInput => $robot) {
+    $robots[$keyInput] = newRobotPosition($robot, 100);
 }
 
 $quad1 = 0;
@@ -52,17 +52,16 @@ $quad3 = 0;
 $quad4 = 0;
 foreach ($map as $y => $row) {
     foreach ($row as $x => $cell) {
-        if ($cell != '.' && $y < floor($height/2) && $x < floor($width/2)) {
-
+        if ($cell != '.' && $y < $height >> 1 && $x < $width >> 1) {
             $quad1 += $cell;
         }
-        if ($cell != '.' && $y < floor($height/2) && $x > floor($width/2)) {
+        if ($cell != '.' && $y < $height >> 1 && $x > $width >> 1) {
             $quad2 += $cell;
         }
-        if ($cell != '.' && $y > floor($height/2) && $x < floor($width/2)) {
+        if ($cell != '.' && $y > $height >> 1 && $x < $width >> 1) {
             $quad3 += $cell;
         }
-        if ($cell != '.' && $y > floor($height/2) && $x > floor($width/2)) {
+        if ($cell != '.' && $y > $height >> 1 && $x > $width >> 1) {
             $quad4 += $cell;
         }
     }
@@ -71,8 +70,8 @@ foreach ($map as $y => $row) {
 $robots = $robotsCopy;
 for ($seconds = 1; $seconds < 100000; $seconds++) {
     $map = $mapCopy;
-    foreach ($robots as $key => $robot) {
-        $robots[$key] = newRobotPosition($robot, 1);
+    foreach ($robots as $keyInput => $robot) {
+        $robots[$keyInput] = newRobotPosition($robot, 1);
     }
 
     foreach ($map as $y => $row) {

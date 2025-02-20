@@ -12,10 +12,11 @@ $directions = [
     ['x' => -1, 'y' => 0]
 ];
 
-function findGroup($y, $x): array {
-    global $visited, $directions, $map,$sides,$sidecounter;
+function findGroup($y, $x): array
+{
+    global $visited, $directions, $map, $sides, $sidecounter;
     if (isset($visited["$y,$x"])) {
-        return [0,0];
+        return [0, 0];
     }
     $visited["$y,$x"] = true;
     $plantsInGroup = 0;
@@ -26,7 +27,7 @@ function findGroup($y, $x): array {
         $newY = $y + $direction['y'];
         if ($newX >= 0 && $newX < count($map[0]) && $newY >= 0 && $newY < count($map)) {
             if ($map[$newY][$newX] === $map[$y][$x]) {
-                [$o,$p] = findGroup($newY, $newX);
+                [$o, $p] = findGroup($newY, $newX);
                 $plantsInGroup += $o;
                 $fences += $p;
             } else {
@@ -42,16 +43,16 @@ function findGroup($y, $x): array {
 
         if ($newfence) {
             $newside = 0;
-            if (!isset($sides[$newY - 1][$newX]) || !in_array($direction,$sides[$newY - 1][$newX])) {
+            if (!isset($sides[$newY - 1][$newX]) || !in_array($direction, $sides[$newY - 1][$newX])) {
                 $newside++;
             }
-            if (!isset($sides[$newY + 1][$newX]) || !in_array($direction,$sides[$newY + 1][$newX])) {
+            if (!isset($sides[$newY + 1][$newX]) || !in_array($direction, $sides[$newY + 1][$newX])) {
                 $newside++;
             }
-            if (!isset($sides[$newY][$newX - 1]) || !in_array($direction,$sides[$newY][$newX - 1])) {
+            if (!isset($sides[$newY][$newX - 1]) || !in_array($direction, $sides[$newY][$newX - 1])) {
                 $newside++;
             }
-            if (!isset($sides[$newY][$newX + 1]) || !in_array($direction,$sides[$newY][$newX + 1])) {
+            if (!isset($sides[$newY][$newX + 1]) || !in_array($direction, $sides[$newY][$newX + 1])) {
                 $newside++;
             }
             if ($newside == 2) {
@@ -81,3 +82,4 @@ foreach ($map as $y => $line) {
     }
 }
 echo "<p>The answer for part 1 is: $pt1";
+echo "<p>The answer for part 2 is: $pt2";

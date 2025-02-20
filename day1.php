@@ -15,8 +15,8 @@ sort($rightList);
 $sumPart1 = 0;
 $sumPart2 = 0;
 $rightListCounter = array_count_values($rightList);
-foreach($leftList as $key => $value) {
-    $sumPart1 += abs($value - $rightList[$key]);
+foreach($leftList as $keyInput => $value) {
+    $sumPart1 += abs($value - $rightList[$keyInput]);
     if (array_key_exists($value, $rightListCounter)) {
         $sumPart2 +=  $value * $rightListCounter[$value];
     }

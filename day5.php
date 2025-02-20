@@ -4,7 +4,7 @@ $input = preg_split('/\r?\n/', $input);
 $rules = [];
 $pages = [];
 $array = "rules";
-foreach ($input as $key => $line) {
+foreach ($input as $keyInput => $line) {
     if ($line === "") {
         $array = "pages";
         continue;

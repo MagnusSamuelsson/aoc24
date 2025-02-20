@@ -1,8 +1,8 @@
 <?php
 $input = file_get_contents('inputs/day4.txt');
 $input = preg_split('/\r?\n/', $input);
-foreach ($input as $key => $line) {
-    $input[$key] = str_split($line);
+foreach ($input as $keyInput => $line) {
+    $input[$keyInput] = str_split($line);
 }
 function search($array): int {
 

@@ -40,7 +40,7 @@ $AntennaLocations = findAntennaLocation($map, $antennas);
 
 $pt1Antinodes = 0;
 foreach ($AntennaLocations as $frequency => $locations) {
-    foreach ($locations as $key => $location) {
+    foreach ($locations as $keyInput => $location) {
         foreach ($locations as $key2 => $location2) {
             if ($location === $location2) {
                 continue;
@@ -60,7 +60,7 @@ foreach ($AntennaLocations as $frequency => $locations) {
 $pt2antinodes = 0;
 $map = $mapCopy;
 foreach ($AntennaLocations as $frequency => $locations) {
-    foreach ($locations as $key => $location) {
+    foreach ($locations as $keyInput => $location) {
         if ($map[$location['y']][$location['x']] != "#") {
             $map[$location['y']][$location['x']] = "#";
             $pt2antinodes += 1;

@@ -71,7 +71,7 @@ function tryRemoveOneIndex($array, $index) {
 }
 $part1Counter = 0;
 $part2Counter = 0;
-foreach ($inputArray as $key => $value) {
+foreach ($inputArray as $keyInput => $value) {
     checkChange2($value);
 }
 echo "<p>The answer for part 1 is: $part1Counter";

@@ -30,8 +30,8 @@ while (count($empty) != 0 && count($disk) != 0) {
     array_shift($empty);
 }
 $sum = 0;
-foreach ($defraged as $key => $value) {
-    $sum += $key * $value;
+foreach ($defraged as $keyInput => $value) {
+    $sum += $keyInput * $value;
 }
 echo "<p>The answer for part 1 is $sum";
 
@@ -42,29 +42,29 @@ $movedFiles = [];
 $firstEmpty = 0;
 $oneisempty = false;
 $filesReverse = array_reverse($files, true);
-foreach ($filesReverse as $key => $value) {
+foreach ($filesReverse as $keyInput => $value) {
     while ($oneisempty && $empty[$firstEmpty] == -1) {
         $firstEmpty++;
     }
-    if ($firstEmpty >= $key) {
+    if ($firstEmpty >= $keyInput) {
         break;
     }
-    for ($k = $firstEmpty; $k <= $key; $k++) {
-        if ($key > $k && $value[1] <= $empty[$k]) {
+    for ($k = $firstEmpty; $k <= $keyInput; $k++) {
+        if ($keyInput > $k && $value[1] <= $empty[$k]) {
             for ($i = 0; $i < $value[1]; $i++) {
                 $movedFiles[$k][] = $value[0];
             }
             $remaining = $empty[$k] - $value[1];
             $empty[$k] = ($remaining > 0) ? $remaining : -1;
             $oneisempty = true;
-            $files[$key][0] = 0;
+            $files[$keyInput][0] = 0;
             break;
         }
     }
 }
 $defraged2 = [];
 $index = 0;
-foreach($files as $key => $value) {
+foreach($files as $keyInput => $value) {
     for ($i = 0; $i < intval($value[1]); $i++) {
         $defraged2[] = $value[0];
     }
@@ -82,7 +82,7 @@ foreach($files as $key => $value) {
     $index++;
 }
 $sum = 0;
-foreach ($defraged2 as $key => $value) {
-    $sum += $key * $value;
+foreach ($defraged2 as $keyInput => $value) {
+    $sum += $keyInput * $value;
 }
 echo "<p>The answer for part 2 is $sum";
